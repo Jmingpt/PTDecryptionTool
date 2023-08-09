@@ -50,7 +50,7 @@ def run():
             result = data[result_cols]
             result.columns = [c.lower().replace(' ', '_') for c in result.columns]
             st.dataframe(
-                data=result.head(10),
+                data=result.sample(100),
                 use_container_width=True,
                 hide_index=True
             )
