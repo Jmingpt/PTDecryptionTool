@@ -35,7 +35,7 @@ def run():
         accept_multiple_files=False
     )
     if uploaded_file:
-        data = pd.read_csv(uploaded_file).sample(500)
+        data = pd.read_csv(uploaded_file)
         cols = data.columns.tolist()
 
         if key != '':
