@@ -36,6 +36,7 @@ def run():
     )
     if uploaded_file:
         data = pd.read_csv(uploaded_file)
+        data = data.dropna()
         cols = data.columns.tolist()
 
         if key != '':
@@ -46,7 +47,7 @@ def run():
                 else:
                     nonencrypt_cols.append(col)
 
-            result_cols = nonencrypt_cols + [c for c in data.columns if c.startswith('decrypted')]
+            result_cols = [c for c in data.columns if c.startswith('decrypted')] + nonencrypt_cols
             result = data[result_cols]
             result.columns = [c.lower().replace(' ', '_') for c in result.columns]
             st.dataframe(
