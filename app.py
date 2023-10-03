@@ -44,7 +44,7 @@ def run():
         if key != '':
             nonencrypt_cols = []
             for col in cols:
-                if 'name' in col.lower() or 'email' in col.lower():
+                if 'name' in col.lower() or 'email' in col.lower() or 'phone' in col.lower():
                     data[f'decrypted_{col}'] = data[col].apply(lambda x: fernet_decrypt(key, x))
                 else:
                     nonencrypt_cols.append(col)
