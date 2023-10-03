@@ -11,9 +11,11 @@ def convert_df(df):
 def fernet_decrypt(key, encrypted_message):
     key = key.encode()
     cipher = Fernet(key)
-    decrypted_message = cipher.decrypt(encrypted_message.encode())
-
-    return decrypted_message.decode()
+    try:
+        decrypted_message = cipher.decrypt(encrypted_message.encode())
+        return decrypted_message.decode()
+    except:
+        pass
 
 
 def run():
@@ -36,7 +38,7 @@ def run():
     )
     if uploaded_file:
         data = pd.read_csv(uploaded_file)
-        data = data.dropna()
+        # data = data.dropna()
         cols = data.columns.tolist()
 
         if key != '':
